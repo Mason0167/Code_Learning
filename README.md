@@ -6,11 +6,11 @@
 - % (Percentage sign)
 - ^ (Caret)
 - & (And sign)
-- * (Asterisk)
+- \* (Asterisk)
 - \( (Left bracket)
 - \) (Right bracket)
 - \- (Dash)
-- + (Plus sign)
+- \+ (Plus sign)
  
 # Link
 - [Janpanese Music] (https://www.youtube.com/watch?v=H6FUBWGSOIc)
