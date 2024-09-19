@@ -1,2 +1,10 @@
-# cheng-yeh
-# “Number row characters”
+# Number row characters
+- ! (Exclamation Mark)
+- @
+- \#
+- $
+- %
+- ^
+- &
+-
+-
