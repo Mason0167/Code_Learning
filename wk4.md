@@ -14,3 +14,18 @@ end-of-line
 outline
 linear
 ```
+
+line\d
+line + one number
+
+line\d+
+line + multiple number
+
+line\d*
+start with line an everything conntects behind the "line" 
+
+^line
+start with line
+
+line$ 
+end with line
