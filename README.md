@@ -17,6 +17,8 @@
 - [Birds] (https://www.youtube.com/watch?v=uu-PSP71cLQ&ab_channel=RRGT)
 - [Dancing] (https://youtu.be/JF1G9ZJrf6w?si=avG2x7ZS7GxVSkbJ)
 
+- [CLI commands](docs/cli.md)
+
 # Experiments
 - 😎
 - 😋
@@ -31,3 +33,4 @@ Shortcuts I would like to start using:
 - Ctrl-A (select all)
 - Win-D (show desktop)
 - Super-Hyper-Meta-F (I don’t even have such keys, but it sounds impressive)
+
