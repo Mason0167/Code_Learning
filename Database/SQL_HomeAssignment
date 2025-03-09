@@ -1,0 +1,88 @@
+-- ex1 
+-- SELECT *
+-- FROM rerectangles
+
+-- ex2
+-- SELECT COUNT(*)
+-- FROM rectangles
+
+-- ex3
+-- SELECT color, width
+-- FROM rectangles
+-- order by width DESC
+-- LIMIT 1;
+
+-- Student name : Cheng-Yeh Tsai
+-- ex4
+-- SELECT color, height
+-- FROM rectangles
+-- order by height DESC
+-- LIMIT 1;
+
+-- ex5
+-- SELECT id, width, height
+-- FROM rectangles
+-- where width > height;
+
+-- ex6
+-- SELECT id, width * height as COLUMN
+-- FROM rectangles
+-- ex7
+-- order by COLUMN DESC
+-- limit 1;
+
+-- ex8
+-- SELECT id, x + width as COLUMN
+-- FROM rectangles
+-- ORDER by COLUMN DESC
+-- LIMIT 1;
+
+-- ex9
+-- SELECT *
+-- FROM rectangles
+-- where color IS NULL;
+
+-- ex10
+-- SELECT DISTINCT color
+-- FROM rectangles
+-- ex11
+-- WHERE color IS NOT NULL;
+-- UPDATE rectangles
+-- SET color = CASE
+--    WHEN color = 'red' THEN '#FF0000'
+--    ELSE color
+-- END
+
+-- ex12
+-- SELECT upper(color)
+-- FROM rectangles
+
+-- ex13
+-- SELECT course_name, length(course_name) as COLUMN
+-- FROM courses
+-- order by course_name desc
+-- LIMIT 1;
+
+-- ex14
+-- SELECT course_id, due_date
+-- FROM assignments
+-- where due_date like '2024%';
+
+-- ex15
+-- SELECT concat(course_id, ': ', course_name)
+-- FROM courses
+
+-- ex16
+-- SELECT course_id, course_name, lab_time
+-- FROM courses
+-- WHERE lab_time like 'MON%';
+
+-- ex17
+-- SELECT course_id, due_date
+-- FROM assignments
+-- where due_date < '2024-11-27';
+
+-- ex18
+SELECT course_id, COUNT(*) as "Numbers of assignment"
+FROM assignments
+GROUP BY course_id
