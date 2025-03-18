@@ -1,0 +1,68 @@
+internal class Program
+{
+    static void Main(string[] args)
+    {
+
+        sbyte dummy = -125; //  -128 127
+        // reviews
+        //------------------- Variables Types --------------------------
+        // integers (byte, short, int, long) ---> Default Size? (int 32)
+        int a = 45;
+        // Decimal number system (float, double, decimal) --> default is double
+        double b = 3.4;
+        // Char
+        char c = 'T'; // single quotation is for characters
+        bool b2 = false;
+        string lastName = "Akbari"; // its for string
+                                    // string : collection of characters in sequence (iterable!) (Imutable!)
+                                    // collection (bundle) of data which have some sort of correlation with each other
+
+        // *** ALL THE INPUTS AND ALL THE OUTPUTS ARE IN FORM OF STRINGS! IN ALL THE 
+        // PROGRAMMING LANGUAGES
+        // Write a program that collect two integers and add them.
+
+        // CTR + D ---> duplication  and then move it using ALT + up/down key
+        // ERRORS : 1) Syntax 2) Logical 3) Running Time (Exceptions!)
+        // Running TEXT instead of number : throw an exception : FormatException
+        // Running white space , and decimal : throw an exception : FormatException
+        //OverflowException
+        // Change this code that the program collect 3 integers and find the avg
+        // make sure your program is error free and does not crash!
+        //dasdasdasd
+        try
+        {
+            
+            Console.WriteLine("Enter the first number : ");
+            int num1 = Convert.ToInt32(Console.ReadLine()); // Exception! it will jump out of try and try to handle it by proper catch
+            Console.WriteLine("Enter the second number : ");
+            int num2 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter the third number : ");
+            int num3 = Convert.ToInt32(Console.ReadLine());
+
+            // if you add to int32 + int32 --> int32
+            // each variable has a dedicated class which holds all the 
+            // functions and all the useful properties for that variable
+            
+            float avg = (num1 + num2 + num3) / 3F;
+
+            Console.WriteLine($"the result is {avg:F2}");
+
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Input must be an integer!");
+        }
+        catch (OverflowException)
+        {
+            Console.WriteLine("The number is too big!");
+        }
+       
+        // continue here!
+        
+        
+
+
+    }
+}
+
+
