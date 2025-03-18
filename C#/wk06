@@ -1,0 +1,103 @@
+internal class Program
+{
+    static void Main(string[] args)
+    {
+        // Contructor is a function that has the same name as the class 
+        // Desipite the constuctor is part of the blueprint of an object 
+        // it can be used only once when you create and instance (obj)
+
+        BankAccount account = new BankAccount();
+
+        // Object class --> includes bunch of default (helper!) methods
+        // to help you constuct and manipulate your object more properly
+
+        account.AccName = "Tony";
+        account.Balance = 1000;
+        BankAccount acc1 = new BankAccount(1, "Tony", "Chq", "BMO", 300);
+        BankAccount acc2 = new BankAccount(2, "Alex", "TD");
+
+        acc1.PrintInfo();
+        acc2.PrintInfo();
+
+        // you want to print account2 --->
+        // it call ToString() function to return a string representation of that object!
+        Console.WriteLine(acc2);
+
+        // Creating obj and setting the property(attr) of an object is
+        // 2 different process
+
+        Console.WriteLine(acc2.ToString());
+
+        BankAccount acc3 = new BankAccount();
+        Console.WriteLine(acc3);
+        acc3.AccName = "Robert";
+        Console.WriteLine(acc3);
+
+
+
+    }
+}
+
+internal class BankAccount
+{
+    // the properties by defaults are private
+    // overloading a method or function.. 
+    // you have multiple function with the same name yet different arguments
+   
+    double balance;
+    private string accName;
+    string type;
+    string bank;
+
+    public int Id { get; set; }
+    public double Balance { get => balance; set => balance = value; }
+    public string AccName { get => accName; set => accName = value; }
+    public string Type { get => type; set => type = value; }
+    public string Bank { get => bank; set => bank = value; }
+
+    public BankAccount() { } // non-arg consturctor // default()
+    public BankAccount(int id, string accName, string type, string bank, double balance)
+    {
+        Balance = balance;
+        AccName = accName;
+        Type = type;
+        Bank = bank;
+        Id = id;
+    }
+
+    public BankAccount(int id, string accName, string bank)
+    {
+        Id = id;
+        AccName = accName;
+        Bank = bank;
+        Type = "cheuqing";
+
+    }
+
+    public void Deposit(double ammt)
+    {
+    Balance += ammt;
+
+
+    }
+
+    public void Withdraw(double ammt)
+    {
+        if (ammt> Balance) { Console.WriteLine("Insufficent balance!"); }
+        else { Balance -= ammt; }
+    }
+
+
+    public void PrintInfo()
+    {
+        Console.WriteLine($"Account # {Id}, Name : {AccName}, Type :{Type}" + $", Bank : {Bank} , Balance :{Balance}");
+
+    }
+
+
+    public override string? ToString()
+    {
+       return  $"Account # {Id}, Name : {AccName}, Type :{Type}" + $", Bank : {Bank} , Balance :{Balance}";
+     
+    }
+}
