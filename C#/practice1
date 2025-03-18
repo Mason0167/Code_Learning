@@ -1,0 +1,83 @@
+internal class Program
+{
+    static void Main(string[] args)
+    {
+        
+        Console.WriteLine($"How many book do you want to create?");
+        int numBook = Convert.ToInt32( Console.ReadLine() );
+
+        Console.WriteLine($"What is the Library name?");
+        string libName = Console.ReadLine();
+
+        string bookAuthor;
+        string bookTitle;
+        Book[] books = new Book[numBook];
+
+        
+
+        for (int i = 0; i < numBook; i++)
+        {
+            Console.WriteLine($"What is the Book title? Book {i+1}: ");
+            bookTitle = Console.ReadLine();
+            Console.WriteLine($"Who is the Book author? Book {i + 1}: ");
+            bookAuthor = Console.ReadLine();
+
+            books[i] = new Book(bookTitle, bookAuthor );
+        }
+
+        Library lib = new Library(libName, books);
+
+        Console.WriteLine(lib);
+        
+    }
+}
+
+internal class Book
+{
+    private static int bookCount = 0;
+    private int bookID;
+    private string title;
+    private string author;
+    public static int BookCount {  get => bookCount; }
+    public int BookID { get => bookID;}
+    public string Title {  get => title; set => title = value;}
+    public string Author { get => author; set => author = value; }
+
+    public Book(string title, string author)
+    {
+        bookID = ++bookCount;
+        Title = title;
+        Author = author;
+    }
+
+    public override string ToString()
+    {
+        return $"Book ID: {bookID}, Book title: {Title}, Book author: {Author}";
+    }
+}
+
+internal class Library
+{
+    private string libraryName;
+    private Book[] book;
+
+    public string LibraryName {  get => libraryName;  set => libraryName = value; }
+    public Book[] Book { get => book; set => book = value; }
+
+    public Library(string libraryName, Book[] book)
+    {
+        LibraryName = libraryName;
+        Book = book;
+    }
+
+    public override string ToString()
+    {
+        string output = "";
+        foreach (Book books in Book)
+        {
+            output += $"Library Name: {LibraryName}, " + books.ToString() + "\n";
+            Console.WriteLine();
+        }
+        return output;
+    }
+}
