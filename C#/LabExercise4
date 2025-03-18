@@ -1,0 +1,45 @@
+internal class Program
+{
+    static void Main(string[] args)
+    {
+        StudentInfo studentInfo = new StudentInfo(101539796, 2001, "Computer Programming", "Chang-Yeh", "Tsai");
+        Console.Write(studentInfo);
+        int age = StudentInfo.GetAge(studentInfo.BirthYear);
+        Console.WriteLine($"This student's age is {age}");
+        
+    }
+}
+
+internal class StudentInfo
+{
+    public StudentInfo(int aId, int aBirthYaer, String aMajor, String aFirstName, String aLastName) 
+    {
+        id = aId;
+        BirthYear = aBirthYaer;
+        major  = aMajor;
+        firstName = aFirstName;
+        lastName = aLastName;
+    }
+    
+    public int id { get; set; }
+    public int BirthYear { get; set; }
+    public String major { get; set; }
+    public String firstName { get; set; }
+    public String lastName { get; set; }
+    public override string ToString() 
+    {
+        return $"Student's ID is # {id}\n" +
+               $"Birth year is {BirthYear}\n" +
+               $"Major in {major}\n" +
+               $"First name: {firstName}\n" +
+               $"Last name: {lastName}\n";
+    }
+
+    public static int GetAge(int BirthYear)
+    {
+        int currentYear = DateTime.Now.Year;
+        int age = currentYear - BirthYear;
+        return age;
+    }
+
+}
