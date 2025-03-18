@@ -1,5 +1,4 @@
-
--- Ex1
+Ex1
 -- SELECT concat(course_name, ' - ', semester)
 -- FROM courses
 
