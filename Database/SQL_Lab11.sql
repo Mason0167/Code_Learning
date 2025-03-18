@@ -3,6 +3,7 @@
 -- FROM assignments
 -- WHERE course_id LIKE '%1234';
 
+
 -- EX2
 -- SELECT min(due_date)
 -- FROM assignments
