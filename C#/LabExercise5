@@ -1,0 +1,113 @@
+internal class Program
+{
+    static void Main(string[] args)
+    {
+        Person p1 = new Person("Alice", 28);
+        Person p2 = new Person("Bob", 30);
+        Person p3 = new Person("David", 39);
+
+        Console.WriteLine(p1);
+        Console.WriteLine(p2);
+
+        Team team1 = new Team("Warriors");
+        Team team2 = new Team("Lions");
+        Team team3 = new Team("Avengers");
+        Team team4 = new Team("Young Avengers");
+
+        team1.SetCaptain(p1);
+        team2.SetCaptain(p2);
+        team3.SetCaptain(p1);
+        team4.SetCoach(p3);
+
+        Console.WriteLine(team1);
+        Console.WriteLine(team2);
+        Console.WriteLine(team3);
+        Console.WriteLine(team4);
+
+        team3.ClearCaptain();
+        Console.WriteLine(team3);
+
+
+    }
+}
+
+internal class Person
+{
+    private static int personCount = 0;
+    private int personID;
+    private string name;
+    private int age;
+
+    public int PersonCount { get => personID; }
+    public int PersonID { get => personID; set => personID = value; }
+    public string Name {  get => name; set => name = value; }
+    public int Age { get => age; set => age = value; }
+
+    public Person()
+    {
+    }
+    public Person(string name, int age)
+    {
+        PersonID = ++personCount;
+        Name = name;
+        Age = age;
+    }
+
+    public override string? ToString()
+    {
+        return $"Person ID: {PersonID}, Name: {Name}, Age: {Age} ";
+    }
+
+}
+
+internal class Team
+{
+    private static int teamCount = 0;
+    private int teamID;
+    private string teamName;
+    private Person captain;
+    private Person coach;
+
+    public int TeamID { get => teamID;}
+    public string TeamName { get => teamName; set => teamName = value; }
+    public Person Captain { get => captain; set => captain = value; }
+    public Person Coach { get => coach; set => coach = value; }
+
+    public Team()
+    {
+    }
+    public Team(string teamName)
+    {
+        teamID = ++teamCount;
+        TeamName = teamName;
+    }
+
+    public void SetCaptain(Person captain)
+    {
+       Captain = captain;
+    }
+
+    public void ClearCaptain()
+    {
+        Captain = null;  
+    }
+
+    public void SetCoach(Person coach)
+    {
+        Coach = coach;
+    }
+
+    public override string? ToString()
+    {
+        if (captain != null)
+        {
+            return $"Team ID: {TeamID}, Team Name: {TeamName}, Captain Name: {Captain.Name}";
+        }
+        else if (coach != null) 
+        {
+            return $"Team ID: {TeamID}, Team Name: {TeamName}, Coach Name: {Coach.Name}";
+        }
+        else return $"Team ID: {TeamID}, Team Name: {TeamName}, No Captain or Coach";
+    }
+
+}
