@@ -1,4 +1,4 @@
--- EX1
+EX1
 -- SELECT title, due_date
 -- FROM assignments
 -- WHERE course_id LIKE '%1234';
