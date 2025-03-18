@@ -1,0 +1,118 @@
+internal class Program
+{
+    static void Main(string[] args)
+    {
+        // Aggregations
+        // Optimizing the class  models 
+        // Class --> bundle for relavant parameters and methods...
+        //       --> Blueprint(model) od an Istance(object)
+        // Object --> it has 3 major char. 1) Name 2) attr/prop 3) function/behavior
+        // UML
+
+        Address add = new Address(1, "Yonge st", "Richmondhill", "ON", " L6A 3C9");
+
+        Employee employee1 = new Employee("Hesam", "Akbari", add);
+        Employee employee2 = new Employee("Hesam", "Akbari", add);
+        Employee employee3 = new Employee("Hesam", "Akbari",
+            new Address(1, "Yonge st", "Richmondhill", "ON", " L6A 3C9"));
+
+        Employee supervier1 = new Employee("Hesam", "Akbari",
+            new Address(1, "Yonge st", "Richmondhill", "ON", " L6A 3C9"),
+            [employee1, employee2, new Employee("temp", "N/A", null)]);
+
+        Employee[] employees = { employee1, employee2, employee3, supervier1 };
+
+        foreach (var emp in employees)
+        {
+            Console.WriteLine(emp);
+            
+        }
+
+
+    }
+}
+
+internal class Employee
+{
+    // Constructors, Overalpping, Overriding, Encapsulation
+    // Encapsulation --> accessing private data through public function
+    // make the data private and bundle it with function(methods).
+
+    private static int generatorID = 0;
+    private int id;
+    private string fname;
+    private string lname;
+    private Address address;
+    private Employee[] subordinates;
+
+    public int Id { get => id; set => id = value; }
+    public string FName { get => fname; set => fname = value; }
+    public string LName { get => lname; set => lname = value; }
+    public Address Address { get => address; set => address = value; }
+    public Employee[] Subordinates { get => subordinates; set => subordinates = value; }
+    
+    // overloaded the constructor : to create multiple function with the same 
+    // name yet different argument
+    public Employee() 
+    {
+        id = ++generatorID;
+            
+    } // default, non-arg constructor
+
+    public Employee(string fname, string lname, Address address)
+    {
+        Id = ++generatorID;
+        FName = fname;
+        LName = lname;
+        Address = address;
+    }
+
+    public Employee(string fname, string lname, Address address, Employee[] subordinates)
+    {
+        Id = ++generatorID;
+        //Address = address;
+        FName = fname;
+        LName = lname;
+        Subordinates = subordinates;
+    }
+
+    // override : change the body of an existing function
+    public override string? ToString()
+    {
+        if (subordinates == null) return $"Employee : {Id}, First Name : {FName}, Last Name:{LName}, Address : {Address}";
+        string output = $"Employee : { Id}, Name : {FName}{LName}, Address : {Address}";
+        output += $"\n=======Subordinates of {FName} ========\n";
+
+        foreach (Employee e in subordinates)
+        { 
+            output += "\t" + e.ToString() + "\n";
+            Console.WriteLine();
+        }
+        return output;
+    }
+}
+
+internal class Address
+{
+    public int StreetNumber { get; set; }
+    public string StreetName { get; set; }
+    public string City { get; set; }
+    public string Province { get; set; }
+    public string PostalCode { get; set; }
+
+    public Address(int streetNumber, string streetName, string city, string province, string postalCode)
+    {
+        StreetNumber = streetNumber;
+        StreetName = streetName;
+        City = city;
+        Province = province;
+        PostalCode = postalCode;
+
+    }
+    public override string? ToString()
+    {
+        return $"Address : {StreetNumber} {StreetName} {City} {Province}, " +
+                $"{PostalCode}";
+    }
+
+}
