@@ -1,1 +1,144 @@
+    internal class Program
+    {
+        static List<Product> products = new List<Product>();
+        static void Main(string[] args)
+        {
+            while (true) 
+            {
+                var choice = MainMenu();
+                if (choice == "1") AddProduct();
+                else if (choice == "2") ListProduct();
+                else if (choice == "3") ApplyDiscount(); 
+                else if (choice == "4") 
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Existing the program!"); 
+                    break; 
+                }
+                else Console.WriteLine("Bad input, try again!");
+            }
+        }
 
+        static string MainMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("--------Main menu---------");
+            Console.WriteLine("1. Add product");
+            Console.WriteLine("2. List product");
+            Console.WriteLine("3. Apply discount");
+            Console.WriteLine("4. Exit");
+            Console.WriteLine("--------------------------");
+            Console.WriteLine("Enter 1 to 4");
+            return Console.ReadLine();
+        }
+
+        
+
+        static void AddProduct()
+        {
+            string productName;
+            double productPrice;
+
+            Console.Clear();
+
+            while(true)
+            {
+                Console.WriteLine("Enter the product name");
+                productName = Console.ReadLine();
+                Console.WriteLine("Enter the product price");
+                productPrice = Convert.ToDouble(Console.ReadLine());
+                products.Add(new Product(productName, productPrice));
+                Console.WriteLine("Created successfully");
+                Console.WriteLine();
+
+                Console.WriteLine("Do you want to create next product");
+                Console.WriteLine("Enter y or n");
+
+                if (Console.ReadLine() == "y")
+                {
+                    continue;
+                }
+                else break;
+            }
+        }
+        
+        static void ListProduct()
+        {
+            
+            Console.Clear();
+            if (products.Count == 0)
+            {
+                Console.WriteLine("No product");
+                Console.WriteLine();
+            }
+            else
+            {
+                foreach (Product p in products)
+                { 
+                    Console.WriteLine(p); 
+                }
+            }
+            Console.ReadLine();
+        }
+
+        static void ApplyDiscount()
+        {
+            Console.Clear();
+            if (products.Count == 0)
+            {
+                Console.WriteLine("No product");
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("Percentage?");
+                double percentage = Convert.ToDouble(Console.ReadLine());
+                double discount = 1 - (percentage / 100);
+                foreach (Product p in products)
+                {
+                    p.Discount = discount;
+                }
+            }
+            Console.WriteLine("Successfully");
+            Console.ReadLine();
+        }
+    }
+
+    internal class Product
+    {
+        private static int productId = 0;
+        private int id;
+        private string name;
+        private double price;
+        private double percentage ;
+        private double discount;
+
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public double Percentage { get; set; }
+        public double Discount { get; set; }
+
+        public Product(string name, double price)
+        {
+            ID = ++productId;
+            Name = name;
+            Price = price;
+            Discount = 0;
+        }
+
+        public double GetDiscount()
+        { 
+            return Price * Discount;
+        }
+
+
+        public override string ToString()
+        {
+            if (Discount > 0)
+            {
+                return $"Product ID: {ID}, Product name: {Name}, Product price (after discount): {GetDiscount()}";
+            }
+            return $"Product ID: {ID}, Product name: {Name}, Product price: {Price}";
+        }
+    }
