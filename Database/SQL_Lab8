@@ -1,0 +1,38 @@
+-- Q1
+select *
+from ap.invoices
+where payment_total > (select avg(payment_total)
+from ap.invoices);
+
+-- Q2
+select invoice_number, invoice_date, invoice_total
+from ap.invoices
+where vendor_id IN(select vendor_id from ap.vendors
+where vendor_state = 'CA');
+
+-- Q3
+select *
+from ap.vendors 
+where vendor_id NOT IN(select vendor_id from ap.invoices);
+
+-- Q4
+select *
+from ap.vendors v
+LEFT JOIN ap.invoices i
+ON v.vendor_id = i.vendor_id
+where i.vendor_id IS NULL;
+
+-- Q5
+select *
+from ap.vendors
+where NOT EXISTS (
+select *
+from ap.invoices
+where vendor_id = vendors.vendor_id);
+
+-- Q6
+select vendor_name, (select MAX(invoice_date) 
+from ap.invoices
+where vendor_id = vendors.vendor_id) as lastest_date
+from ap.vendors
+order by lastest_date DESC;
