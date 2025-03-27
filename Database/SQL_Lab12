@@ -1,6 +1,6 @@
 Ex1
--- SELECT concat(course_name, ' - ', semester)
--- FROM courses
+SELECT concat(course_name, ' - ', semester)
+FROM courses
 
 -- Ex2
 -- SELECT course_id, course_name, lab_time
