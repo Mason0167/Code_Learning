@@ -1,0 +1,47 @@
+-- Q1
+create view ex.vhdr_view AS 
+select vendor_name, vendor_state, vendor_phone
+from ap.vendors;
+
+-- Q2 
+select * from ex.vhdr_view;
+
+ -- Q3-a
+create view ex.vhdr_view2 as
+select * 
+from ex.vhdr_view
+where vendor_state = 'CA';
+ 
+select * from ex.vhdr_view2;
+
+ -- Q3-b
+create view ex.vhdr_view3 as
+select * 
+from ap.vendors
+where vendor_phone is null;
+ 
+select * from ex.vhdr_view3;
+ 
+-- Q4
+update ex.vhdr_view
+set vendor_phone = '(416) 415-5000'
+where vendor_name = 'Asc Signs';
+
+-- Q5
+create or replace view ex.vhdr_view3 as
+select vendor_id, vendor_name, vendor_state, vendor_phone
+from ap.vendors
+where vendor_phone is null with check option;
+
+-- Q6 
+update ex.vhdr_view3
+set vendor_date = 'CA'
+where vendor_name = 'Ingram';
+
+-- Q7
+select vendor_name, count(*), SUM(invoice_total- patment_total - credit_total)
+from ap.vendors v
+inner join ap.invoices i
+on v.vendor_id = i.vendor_id
+where sum(invoice_total- patment_total - credit_total) > 0
+group by vendor_name;
