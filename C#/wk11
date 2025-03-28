@@ -1,0 +1,126 @@
+
+
+            Product product = new Product();
+
+            Console.WriteLine("Enter the product ID");
+            product.ID = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter product name");
+            product.Name = Console.ReadLine();
+
+            Console.WriteLine("Enter product quantity");
+            product.Quantity = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter product price");
+            product.Price = double.Parse(Console.ReadLine());
+
+            return product;
+
+        }
+        public static string Menu()
+        {
+            Console.WriteLine("---------------Sales Records----------------");
+            Console.WriteLine("1. Record new sales to a new file");
+            Console.WriteLine("2. Record new sales to an existing file ");
+            Console.WriteLine("3. View existing sales from a file");
+            Console.WriteLine("4. View the list of existing file(s)");
+            Console.WriteLine("5. Replace (update) one sale on an existing file ");
+            Console.WriteLine("6. Exit");
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("Enter 1, 2, 3, 4, 5, 6: ");
+            return Console.ReadLine();
+        }
+        static void Main(string[] args)
+        {
+            while (true) {
+                var choice = Menu();
+                if (choice == "1") { RecordNewSalesNewFile(); }
+                else if (choice == "2") { RecordNewSalesExistingFile(); }
+                else if (choice == "3") { ViewExistingSales(); }
+                else if (choice == "4") { ViewExistingFiles(); }
+                else if (choice == "5") { UpdatingExistingFiles(); }
+                else if (choice == "6") { break; }
+                else { Console.WriteLine("Bad input"); }
+
+                Console.WriteLine("Press any key to clear the con");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+
+        private static void RecordNewSalesExistingFile()
+        {
+            throw new NotImplementedException();
+        }
+        private static void ViewExistingSales()
+        {
+            Console.WriteLine("List of existing files");
+            ViewExistingFiles();
+            Console.WriteLine("Enter your desired name for the file (e.g. March): ");
+            var filenName = Console.ReadLine() + ".csv";
+
+            if (File.Exists(filenName))
+            {
+                using (StreamReader sr = new StreamReader(filenName))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string[] output = line.Split(',');
+                        Console.WriteLine($"ID: {output[0]}, Name: {output[1]}, Quantity: {output[2]}, Price: {output[3]}");
+                    }
+                }
+            }
+            else { Console.WriteLine("The file does not exist"); }
+
+        }
+        private static void ViewExistingFiles()
+        {
+            string[] files = Directory.GetFiles("./"); // Getting a list of the files from the root directory
+
+            foreach (var file in files)
+            {
+                Console.WriteLine(file);
+            }
+
+        }
+        
+        private static void UpdatingExistingFiles()
+        {
+            throw new NotImplementedException();
+        }
+
+      
+        private static void RecordNewSalesNewFile()
+        {
+            Console.WriteLine("Enter your desire name for the file (ex: January) ");
+            var fileName = Console.ReadLine() + ".csv";
+
+            if (!File.Exists(fileName))
+            {
+                Console.WriteLine("Enter the number of sales: ");
+                var nSale = int.Parse(Console.ReadLine());
+
+                using (StreamWriter sw = new StreamWriter(fileName))
+                {
+                    for (int i = 0; i < nSale; i++)
+                    {
+                        Product product = UserProductCollection();
+                        sw.WriteLine(product.ToString()); // ToString()
+                    }
+                    // sw.Close();
+                    // it close the file automatically
+                }
+            }
+            else
+            {
+                Console.WriteLine("File is Esixt! If you like to create ");
+            }
+
+        }
+
+       
+
+
+    }
+}
