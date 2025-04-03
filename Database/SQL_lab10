@@ -1,0 +1,55 @@
+use ap;
+show tables;
+
+-- Q1
+DELIMITER //
+CREATE PROCEDURE ap.highest_payment()
+BEGIN 
+DECLARE max_payment decimal(9,2);
+	SELECT MAX(payment_total)
+    INTO max_payment
+    from invoices
+	where vendor_id = 123; 
+    
+    IF max_payment > 1000 THEN
+		SELECT ('Highest PaymentAomunt is greater than 1000$');
+	ELSE 
+		SELECT ('Highest PaymentAomunt is less than 1000$');
+	END IF;
+END;
+DELIMITER;
+
+
+-- Q3
+DROP PROCEDURE IF EXISTS ap.insert_terms()
+
+DELIMITER //
+CREATE PROCEDURE ap.insert_terms()
+BEGIN 
+DECLARE dulplicate_ver BOOL DEFAULT False;
+DECLARE null_var BOOL DEFAULT False;
+DECLARE sql_exception_var BOOL DEFAULT False;
+
+BEGIN
+DECLARE EXIT HANDLER FOR 1062 SET dulplicate_ver = TRUE;
+DECLARE EXIT HANDLER FOR 1048 SET null_var = TRUE;
+DECLARE EXIT HANDLER FOR SQLEXCEPTION SET sql_exception_var = TRUE;
+
+INSERT INTO ap.terms VALUES (2, 'Test', 15);
+
+END;
+   
+    IF dulplicate_ver = TRUE THEN
+		SELECT 'Dupulicate key entry error';
+	ELSEIF  null_var = TRUE THEN
+		SELECT 'Null entry error';
+	ELSEIF sql_exception_var = TRUE THEN
+		SELECT 'SQL Exception';
+	ELSE
+
+call ap.insert_terms();
+		SELECT 'I ro inserted successfully';
+	END IF;
+    
+END //
+DELIMITER ;
