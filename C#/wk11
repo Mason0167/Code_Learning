@@ -1,4 +1,29 @@
+using System.Data.Common;
+using System.Xml.Linq;
+using System.IO;
 
+namespace wl11
+{
+    class Product
+
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public int Quantity { get; set; }
+        public double Price { get; set; }
+
+        public override string ToString()
+        {
+            return $"{ID}, {Name}, {Quantity}, {Price}";
+        }
+    }
+
+
+    internal class Program
+    {
+        //sales of product on the file (TXT) ---> CSV files
+        public static Product UserProductCollection()
+        {
 
             Product product = new Product();
 
